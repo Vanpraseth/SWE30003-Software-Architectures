@@ -1,4 +1,4 @@
--- API query examples for Anh
+-- API query examples
 
 -- Register user
 INSERT INTO users (full_name, email, password, role)

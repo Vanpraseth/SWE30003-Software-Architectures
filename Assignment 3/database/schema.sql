@@ -70,6 +70,7 @@ CREATE TABLE orders (
     total_price REAL NOT NULL CHECK(total_price >= 0),
     status TEXT NOT NULL DEFAULT 'processing'
         CHECK(status IN ('processing', 'paid', 'shipped', 'delivered', 'cancelled')),
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 

@@ -1,4 +1,3 @@
-# Author: Anh Phan
 """Cart domain classes."""
 
 from dataclasses import dataclass, field

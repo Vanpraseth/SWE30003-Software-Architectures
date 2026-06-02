@@ -1,7 +1,6 @@
 """
-Self-contained API test using Flask's built-in test client.
-No network/background process needed - exercises the full stack
-(routes -> services -> repositories -> SQLite) in-process.
+Runs all API scenarios using Flask's built-in test client.
+No server needed — just run this file directly.
 """
 import json
 import server as application

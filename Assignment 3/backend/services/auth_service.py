@@ -38,8 +38,8 @@ class AuthService:
             raise ValidationError("Name required.")
         if not email or not _EMAIL_RE.match(email):
             raise ValidationError("Invalid email.")
-        if not password or len(password) < 11:
-            raise ValidationError("Password min 11 chars.")
+        if not password or len(password) < 6:
+            raise ValidationError("Password min 6 chars.")
         if self.users.find_by_email(email):
             raise ValidationError("Email already in use.")
 

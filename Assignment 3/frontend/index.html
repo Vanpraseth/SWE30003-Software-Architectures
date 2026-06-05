@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite Books - Index</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+    <aside class="left-aside">
+
+        <img src="assets/FavouriteBooksLogoX300.png" alt="FB logo">
+
+        <div class="sort">
+            <h2>Sort</h2>
+
+            <label class="radio-option">
+                <input type="radio" name="sort" value="newest-releases">
+                <span>Newest Releases</span>
+            </label>
+
+            <label class="radio-option">
+                <input type="radio" name="sort" value="newest-arrivals">
+                <span>Newest Arrivals</span>
+            </label>
+
+            <label class="radio-option">
+                <input type="radio" name="sort" value="title">
+                <span>Title</span>
+            </label>
+
+            <label class="radio-option">
+                <input type="radio" name="sort" value="author">
+                <span>Author</span>
+            </label>
+
+            <label class="radio-option">
+                <input type="radio" name="sort" value="genre">
+                <span>Genre</span>
+            </label>
+
+            <label class="radio-option">
+                <input type="radio" name="sort" value="price">
+                <span>Price</span>
+            </label>
+        </div>
+
+        <div class="filter">
+
+            <h2>Filter</h2>
+
+        </div>
+
+    </aside>
+
+    <header class="top-bar">
+
+        <h1>Favourite Books</h1>
+
+        <div class="auth">
+            <h2>Welcome!</h2>
+            <p>Login / Register</p> <!-- Not yet functional -->
+        </div>
+
+    </header>
+
+    <div class="content-row">
+
+        <main>
+
+            <div class="main-header">
+
+                <h2>Catalogue</h2>
+                <input type="search" placeholder="Search">
+
+            </div>
+            
+            <div class="catalogue">
+
+            </div>
+        </main>
+
+        <aside class="right-aside">
+
+            <h2>Cart</h2>
+
+        </aside>
+
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/catalogue.js"></script>
+
+    <script>
+       loadCart();
+    </script>
+
+</body>
+</html>

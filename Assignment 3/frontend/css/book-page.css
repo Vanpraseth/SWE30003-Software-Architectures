@@ -1,0 +1,162 @@
+:root {
+    --aside-width: 220px;
+    --header-height: 110px;
+    --gap: 12px;
+}
+
+/* =========================
+   BASE LAYOUT
+========================= */
+
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* =========================
+   LEFT ASIDE
+========================= */
+
+.left-aside {
+    position: fixed;
+    top: var(--gap);
+    left: var(--gap);
+    bottom: var(--gap);
+
+    width: var(--aside-width);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: var(--gap);
+    padding-top: 0;
+}
+
+.left-aside img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    align-self: center;
+}
+
+/* =========================
+   RIGHT ASIDE
+========================= */
+
+.right-aside {
+    position: sticky;
+    top: var(--gap);
+    height: fit-content;
+
+    width: var(--aside-width);
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: auto;
+
+    padding: var(--gap);
+
+    overflow-y: auto;
+    background-color: #E9ECEF;
+}
+
+/* =========================
+   CENTER LAYOUT
+========================= */
+
+.content-row {
+    display: flex;
+
+    margin-left: calc(var(--aside-width) + var(--gap));
+    margin-right: var(--gap);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    display: flex;
+    align-items: center;
+
+    height: var(--header-height);
+
+    margin: var(--gap);
+    margin-left: calc(var(--aside-width) + var(--gap));
+
+    padding: var(--gap);
+
+    background-color: #B9D8EE;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    margin-right: calc(var(--gap) * 2);
+}
+
+.stock-price-cart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.stock-price-cart button {
+    font-size: 1.4rem;
+    padding: calc(var(--gap) * 1.5) calc(var(--gap) * 2.5);
+    border-radius: var(--radius);
+    cursor: pointer;
+    align-self: flex-start;
+    width: auto;
+}
+
+/* =========================
+   AUTH / HEADER ELEMENTS
+========================= */
+
+.auth {
+    margin-left: auto;
+
+    padding-left: var(--gap);
+
+    border-left: 1px solid #838485;
+
+    width: var(--aside-width);
+
+    text-align: center;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+input {
+    background-color: #E9ECEF;
+    padding: calc(var(--gap) / 3);
+}
+
+input[type="search"] {
+    border-radius: var(--radius);
+}
+
+/* =========================
+   SHARED STYLING
+========================= */
+
+.left-aside img,
+header,
+input[type="search"],
+.right-aside {
+    border-radius: var(--radius);
+}
+
+h2 {
+    margin: 0;
+}

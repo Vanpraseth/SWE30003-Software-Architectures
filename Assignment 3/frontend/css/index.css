@@ -1,0 +1,250 @@
+:root {
+    --aside-width: 220px;
+    --header-height: 110px;
+    --gap: 12px;
+}
+
+/* =========================
+   BASE LAYOUT
+========================= */
+
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* =========================
+   LEFT ASIDE
+========================= */
+
+.left-aside {
+    position: fixed;
+    top: var(--gap);
+    left: var(--gap);
+    bottom: var(--gap);
+
+    width: var(--aside-width);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: var(--gap);
+    padding-top: 0;
+}
+
+.left-aside img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    align-self: center;
+}
+
+/* =========================
+   RIGHT ASIDE
+========================= */
+
+.right-aside {
+    position: sticky;
+    top: var(--gap);
+    height: fit-content;
+
+    width: var(--aside-width);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+    background-color: #E9ECEF;
+
+    margin-left: auto;
+    padding: var(--gap);
+}
+
+/* =========================
+   CENTER LAYOUT
+========================= */
+
+.content-row {
+    flex: 1;
+    display: flex;
+
+    margin-left: calc(var(--aside-width) + var(--gap));
+    margin-right: var(--gap);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    display: flex;
+    align-items: center;
+
+    height: var(--header-height);
+
+    margin: var(--gap);
+    margin-left: calc(var(--aside-width) + var(--gap));
+
+    padding: var(--gap);
+
+    background-color: #B9D8EE;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    margin-right: calc(var(--gap) * 2);
+}
+
+/* =========================
+   TOP BAR CONTENT
+========================= */
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: var(--gap);
+    margin-right: 0;
+}
+
+/* =========================
+   SIDEBAR SECTIONS
+========================= */
+
+.sort,
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+
+    background-color: #E9ECEF;
+    padding: var(--gap);
+}
+
+.filter {
+    overflow: auto;
+}
+
+/* =========================
+   CARDS / ITEMS
+========================= */
+
+.catalogue {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    gap: var(--gap);
+}
+
+.catalogue-item {
+    display: flex;
+    width: 100%;
+    background-color: #B9D8EE;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: var(--gap);
+
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.catalogue-item:hover {
+    background-color: #a9c9e3; /* slightly darker than current */
+    cursor: pointer;
+}
+
+.catalogue-item .left {
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+    
+}
+
+.catalogue-item .right {
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
+    padding-right: var(--gap);
+}
+
+.author {
+    padding-left: var(--gap);    
+}
+
+.price {
+    font-weight: bold;
+    color: #2d7a2d;
+    padding-left: var(--gap);
+}
+
+.genre {
+    color: #666;
+    padding-right: var(--gap)
+}
+
+.stock {
+    color: #444;
+    padding-left: var(--gap);
+     padding-right: var(--gap);
+}
+
+/* =========================
+   AUTH / HEADER ELEMENTS
+========================= */
+
+.auth {
+    margin-left: auto;
+
+    padding-left: var(--gap);
+
+    border-left: 1px solid #838485;
+
+    width: var(--aside-width);
+
+    text-align: center;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+input {
+    background-color: #E9ECEF;
+    padding: calc(var(--gap) / 3);
+}
+
+input[type="search"] {
+    border-radius: var(--radius);
+}
+
+/* =========================
+   SHARED STYLING
+========================= */
+
+.left-aside img,
+.sort,
+.filter,
+header,
+input[type="search"],
+.catalogue-item,
+.right-aside {
+    border-radius: var(--radius);
+}
+
+h2 {
+    margin: 0;
+}

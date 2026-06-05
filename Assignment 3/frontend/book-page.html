@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite Books - View</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/book-page.css">
+</head>
+
+<body>
+
+    <aside class="left-aside">
+
+        <img src="assets/FavouriteBooksLogoX300.png" alt="FB logo">
+
+    </aside>
+
+    <header class="top-bar">
+
+        <h1>Favourite Books</h1>
+
+        <div class="auth">
+            <h2>Welcome!</h2>
+            <p>Login / Register</p> <!-- Not yet functional -->
+        </div>
+
+    </header>
+
+    <div class="content-row">
+
+        <main>
+
+            <div class="main-header">
+
+                <h2>Title</h2>
+                <h3>Author</h3>
+
+            </div>
+            
+            <div class="description">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut tellus vel nisi fermentum ullamcorper sit amet ac leo. In commodo rhoncus ligula, rhoncus ultricestellus dapibus et. Integer in mauris massa. Nunc purus lectus, euismod eu odio et, dictum sodales orci. Nam ac auctor ipsum. Donec eu est in purus dictum posuere sit amet non nulla. Praesent laoreet diam diam, ut scelerisque ipsum ultrices eget. Cras tempus neque 
+                </p>
+            </div>
+
+            <div class="stock-price-cart">
+                <h3>Stock</h3>
+                <h2>Price</h2>
+                <button>Add to Cart</button>
+            </div>
+        </main>
+
+        <aside class="right-aside">
+
+            <h2>Cart</h2>
+
+        </aside>
+
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/book-page.js"></script>
+    <script>
+       loadCart();
+    </script>
+
+</body>
+</html>

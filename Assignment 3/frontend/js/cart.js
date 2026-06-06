@@ -85,13 +85,14 @@ function renderCart(cart) {
             <div><strong>${item.title}</strong></div>
             <div>Qty: ${item.quantity}</div>
             <div>$${Number(item.subtotal).toFixed(2)}</div>
+            <button onclick="removeFromCart(${item.book_id})">Remove</button>
         </div>
     `).join("");
 
     aside.innerHTML += `
         <hr>
         <h3>Total: $${Number(total).toFixed(2)}</h3>
-        <button onclick="checkout()">Checkout</button>
+        <button onclick="window.location.href='checkout.html'">Checkout</button>
     `;
 }
 
@@ -189,8 +190,24 @@ async function checkout() {
     await loadCart();
 }
 
+async function removeFromCart(bookId) {
+    const token = getToken();
+    if (!token) return;
+    const res = await fetch(`${API_BASE}/cart/items/${bookId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    if (res.status === 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        alert("Your login expired. Please login again.");
+        window.location.href = "login-register.html";
+        return;
+    }
+    await loadCart();
+}
 window.addToCart = addToCart;
-window.checkout = checkout;
+window.removeFromCart = removeFromCart;
 window.loadCart = loadCart;
 document.addEventListener("DOMContentLoaded", () => {
     loadCart();

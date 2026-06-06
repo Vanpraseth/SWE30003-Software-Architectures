@@ -65,6 +65,7 @@ cartBox.innerHTML = items.map(item => `
         <strong>${item.title}</strong>
         <p>Quantity: ${item.quantity}</p>
         <p>Subtotal: $${Number(item.subtotal).toFixed(2)}</p>
+        <button onclick="removeFromCart(${item.book_id})">Remove</button>
     </div>
 `).join("");
 
@@ -127,6 +128,23 @@ async function placeOrder() {
     }, 1500);
 }
 
+async function removeFromCart(bookId) {
+    const token = getToken();
+    if (!token) return;
+    const res = await fetch(`${API_BASE}/cart/items/${bookId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    if (res.status === 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        alert("Your login expired. Please login again.");
+        window.location.href = "login-register.html";
+        return;
+    }
+    await loadCheckoutCart();
+}
 document.addEventListener("DOMContentLoaded", () => {
     loadCheckoutCart();
 

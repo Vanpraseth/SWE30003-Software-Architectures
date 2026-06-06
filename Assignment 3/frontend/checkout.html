@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite Books - Checkout</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+
+<body>
+
+    <aside class="left-aside">
+        <a href="index.html">
+            <img src="assets/FavouriteBooksLogoX300.png" alt="FB logo">
+        </a>
+    </aside>
+
+    <header class="top-bar">
+        <h1>Favourite Books</h1>
+
+        <div class="auth">
+            <h2>Welcome!</h2>
+            <p>Login / Register</p>
+        </div>
+    </header>
+
+    <div class="content-row">
+
+        <main class="checkout-main">
+
+            <div class="main-header">
+                <h2>Checkout</h2>
+                <p>Review your cart and complete your order.</p>
+            </div>
+
+            <div class="checkout-container">
+
+                <section class="checkout-card cart-summary-card">
+                    <h3>Your Cart</h3>
+                    <div id="checkout-cart"></div>
+                </section>
+
+                <section class="checkout-card delivery-card">
+                    <h3>Delivery Details</h3>
+
+                    <label for="delivery-address">Delivery Address</label>
+                    <textarea 
+                        id="delivery-address" 
+                        rows="5" 
+                        placeholder="Enter your delivery address"
+                    ></textarea>
+
+                    <button id="place-order-btn">Place Order</button>
+
+                    <p id="checkout-message"></p>
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth-ui.js"></script>
+    <script src="js/checkout.js"></script>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 let allBooks = [];
 let filteredBooks = [];
+let currentSort = null;
+let currentSearch = "";
 
 function createBookItem(book) {
     return `
@@ -19,13 +21,20 @@ function createBookItem(book) {
 }
 
 async function loadBooks() {
-    const response = await fetch("http://localhost:5000/api/books");
+    const response = await fetch(`${API_BASE}/books`);
+
     allBooks = await response.json();
     filteredBooks = allBooks;
 
+    currentSort = "newest-arrivals";
+
     renderFilters();
+
     attachFilterEvents();
-    renderBooks();
+    attachSortEvents();
+    attachSearchEvents();
+
+    updateFilters();
 }
 
 function renderBooks() {
@@ -63,8 +72,13 @@ function renderFilters() {
 }
 
 function attachFilterEvents() {
-    const checkboxes = document.querySelectorAll(".filter input[type='checkbox']");
-    const allBox = document.querySelector(".filter input[value='all']");
+    const checkboxes = document.querySelectorAll(
+        ".filter input[type='checkbox']"
+    );
+
+    const allBox = document.querySelector(
+        ".filter input[value='all']"
+    );
 
     checkboxes.forEach(box => {
         box.addEventListener("change", () => {
@@ -72,7 +86,9 @@ function attachFilterEvents() {
             if (box.value === "all") {
                 if (box.checked) {
                     checkboxes.forEach(b => {
-                        if (b.value !== "all") b.checked = false;
+                        if (b.value !== "all") {
+                            b.checked = false;
+                        }
                     });
                 }
             } else {
@@ -85,29 +101,107 @@ function attachFilterEvents() {
 }
 
 function updateFilters() {
-    const checkboxes = document.querySelectorAll(".filter input[type='checkbox']");
-    const allBox = document.querySelector(".filter input[value='all']");
+    const checkboxes = document.querySelectorAll(
+        ".filter input[type='checkbox']"
+    );
+
+    const allBox = document.querySelector(
+        ".filter input[value='all']"
+    );
 
     const selectedGenres = Array.from(checkboxes)
-        .filter(b => b.checked && b.value !== "all")
-        .map(b => b.value);
+        .filter(box => box.checked && box.value !== "all")
+        .map(box => box.value);
 
     if (selectedGenres.length === 0) {
         filteredBooks = allBooks;
-
-        // force "All" to be selected again
         allBox.checked = true;
-
     } else {
         filteredBooks = allBooks.filter(book =>
             selectedGenres.includes(book.category_name)
         );
 
-        // ensure "All" is off when specific filters are active
         allBox.checked = false;
     }
 
+    if (currentSearch !== "") {
+        filteredBooks = filteredBooks.filter(book =>
+            book.title.toLowerCase().includes(currentSearch) ||
+            book.author.toLowerCase().includes(currentSearch) ||
+            book.category_name.toLowerCase().includes(currentSearch)
+        );
+    }
+
+    filteredBooks = sortBooks(filteredBooks);
+
     renderBooks();
+}
+
+function sortBooks(books) {
+    const sorted = [...books];
+
+    switch (currentSort) {
+        case "title":
+            sorted.sort((a, b) =>
+                a.title.localeCompare(b.title)
+            );
+            break;
+
+        case "author":
+            sorted.sort((a, b) =>
+                a.author.localeCompare(b.author)
+            );
+            break;
+
+        case "genre":
+            sorted.sort((a, b) =>
+                a.category_name.localeCompare(b.category_name)
+            );
+            break;
+
+        case "price":
+            sorted.sort((a, b) =>
+                a.price - b.price
+            );
+            break;
+
+        case "newest-arrivals":
+            sorted.sort((a, b) =>
+                b.book_id - a.book_id
+            );
+            break;
+    }
+
+    return sorted;
+}
+
+function attachSortEvents() {
+    const radios = document.querySelectorAll(
+        ".sort input[type='radio']"
+    );
+
+    console.log("SORT RADIOS FOUND:", radios.length);
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", () => {
+            console.log("SORT CLICK:", radio.value);
+
+            currentSort = radio.value;
+            updateFilters();
+        });
+    });
+}
+
+function attachSearchEvents() {
+    const searchInput = document.querySelector(
+        ".main-header input[type='search']"
+    );
+
+    searchInput.addEventListener("input", () => {
+        currentSearch = searchInput.value.toLowerCase();
+
+        updateFilters();
+    });
 }
 
 function openBook(id) {
@@ -116,4 +210,6 @@ function openBook(id) {
 
 window.openBook = openBook;
 
-loadBooks();
+document.addEventListener("DOMContentLoaded", () => {
+    loadBooks();
+});

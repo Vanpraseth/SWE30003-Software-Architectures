@@ -77,6 +77,11 @@ This should open the website in your browser
 
 
 
+You won't be able to add to your cart without signing in. If you attempt to do so, you will be taken to the sign-in page.
+Please use email van@example.com and pass password123 to sign in.
+
+
+
 ### Team Members
 
 WILLIAM REEDIE, 104300597

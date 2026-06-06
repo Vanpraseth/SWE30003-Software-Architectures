@@ -44,13 +44,16 @@ function renderBook(book) {
     const priceEl = document.querySelector(".stock-price-cart h2");
     const button = document.querySelector("button");
 
-    if (!titleEl || !authorEl || !descEl || !stockEl || !priceEl || !button) return;
+    if (!titleEl || !authorEl || !descEl || !stockEl || !priceEl || !button) {
+        console.error("Book page HTML elements not found");
+        return;
+    }
 
     titleEl.textContent = book.title;
     authorEl.textContent = book.author;
     descEl.textContent = book.description;
     stockEl.textContent = `Stock: ${book.stock_quantity}`;
-    priceEl.textContent = `$${book.price.toFixed(2)}`;
+    priceEl.textContent = `$${Number(book.price).toFixed(2)}`;
 
     button.onclick = () => addToCart(book.book_id, 1);
 }

@@ -4,7 +4,7 @@ REM --- start backend ---
 cd backend
 call venv\Scripts\activate
 
-start "Backend" cmd /k python app.py
+start "Backend" cmd /k python server.py
 
 cd ..
 
